@@ -9,6 +9,7 @@ struct binaryTree {
 
 typedef struct binaryTree* node;
 // A utility function to create a new BST node 
+node root = NULL;
 node newNode(int element) {
     node temp =  (node)malloc(sizeof(struct binaryTree)); 
     temp->data = element; 
@@ -27,7 +28,7 @@ void inorder(node root) {
 } 
    
 /* A utility function to insert a new node with given data in BST */
-node insert(node new, int key) { 
+void insert(node new, int key) { 
     /* If the tree is empty, return a new node */
     if (new == NULL) return newNode(key); 
   
@@ -38,28 +39,25 @@ node insert(node new, int key) {
         new->right = insert(new->right, key);    
   
     /* return the (unchanged) node pointer */
-    return new; 
 } 
    
 // Driver Program to test above functions 
 int main() { 
-    /* Let us create following BST 
-              50 
-           /     \ 
-          30      70 
-         /  \    /  \ 
-       20   40  60   80 */
-    node root = NULL; 
-    root = insert(root, 50); 
-    insert(root, 30); 
-    insert(root, 20); 
-    insert(root, 40); 
-    insert(root, 70); 
-    insert(root, 60); 
-    insert(root, 80); 
-   
-    // print inoder traversal of the BST 
-    inorder(root); 
-   
-    return 0; 
+   int choice;
+    
+   printf("1. Insert nodes into tree\n2. Display tree\n3. Exit\n");
+   do{
+      printf("\nEnter your choice - ");
+      scanf("%d", &choice);
+      switch(choice){
+         case 1:{
+            printf("Enter the data for root node - ");
+            scanf("%d", &data);
+            insert(root, data);
+         } break;
+         case 2: inorder(root); break;
+         case 3: return 0;
+      }
+   }while(choice != 0);
+   return 0; 
 } 
