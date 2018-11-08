@@ -158,6 +158,7 @@ node poly_add(node h1,node h2,node res)
                 cval=ctr1->coeff +ctr2->coeff;
                 res=insert_poly(res,xp,yp,zp,cval);
                 flag=1;
+                ctr2->coeff=0;
                 break;
             
             }
@@ -175,17 +176,20 @@ node poly_add(node h1,node h2,node res)
         ctr1=ctr1->link;
         
     }
+    ctr2=h2->link;
+    /*
     while(ctr1!= h1)
-    {    res=insert_poly(res,ctr1->x_pow,ctr1->y_pow,ctr1->z_pow,ctr1->coeff);
+    {    
+        res=insert_poly(res,ctr1->x_pow,ctr1->y_pow,ctr1->z_pow,ctr1->coeff);
          ctr1=ctr1->link;
     }
-
+    */
     while(ctr2!= h2)
-
-    {   res=insert_poly(res,ctr2->x_pow,ctr2->y_pow,ctr2->z_pow,ctr2->coeff);
-        ctr2=ctr2->link;
+    {   if(ctr2->coeff !=0)
+           res=insert_poly(res,ctr2->x_pow,ctr2->y_pow,ctr2->z_pow,ctr2->coeff);
+            ctr2=ctr2->link;
+        
     }
-
 
 
     return(res);
